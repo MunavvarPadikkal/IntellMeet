@@ -244,3 +244,5 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 ## 🙌 Acknowledgements
 
 Built as a collaborative full-stack development project exploring real-time communication, AI-powered workflows, and modern web application deployment.
+
+-------------------------------------------------------------------------------
