@@ -7,7 +7,6 @@ import {
   House,
   LogOut,
   Menu,
-  Terminal,
   UserRound,
   Video,
   type LucideIcon,
