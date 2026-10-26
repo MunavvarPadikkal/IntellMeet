@@ -40,6 +40,14 @@ jobs:
   server:
     name: Server (test)
     runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+    env:
+      MONGODB_URI: mongodb://127.0.0.1:27017/intellmeet
+      NODE_ENV: test
     defaults:
       run:
         working-directory: server
