@@ -4,9 +4,9 @@
 // server-side session/token store exists: lifetimes are enforced by
 // signed exp claims plus the User authVersion check on every use.
 const AUTH_LIMITS = {
-  // Passwords: 15-128 Unicode chars for new setups, UTF-8 byte ceiling
+  // Passwords: 8-128 Unicode chars for new setups, UTF-8 byte ceiling
   // 512. Legacy shorter passwords still verify at login.
-  PASSWORD_MIN_CHARS: 15,
+  PASSWORD_MIN_CHARS: 8,
   PASSWORD_MAX_CHARS: 128,
   PASSWORD_MAX_BYTES: 512,
   // Argon2id (m=19456 KiB,t=2,p=1) measured ~40ms on the dev machine.

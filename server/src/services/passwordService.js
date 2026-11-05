@@ -69,7 +69,7 @@ async function withSlot(fn) {
   }
 }
 
-// New-password policy: 15-128 Unicode chars + 512 UTF-8 byte ceiling.
+// New-password policy: 8-128 Unicode chars + 512 UTF-8 byte ceiling.
 // No trim/lowercase/transform, no composition rules, spaces allowed.
 // Legacy shorter passwords still verify at login.
 function validateNewPassword(password) {
