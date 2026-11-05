@@ -152,7 +152,7 @@ export function AccountPanel() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="new-password">New password (15+ characters)</Label>
+                  <Label htmlFor="new-password">New password (8+ characters)</Label>
                   <Input
                     id="new-password"
                     type="password"
@@ -160,7 +160,7 @@ export function AccountPanel() {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     required
-                    minLength={15}
+                    minLength={8}
                   />
                 </div>
               </div>

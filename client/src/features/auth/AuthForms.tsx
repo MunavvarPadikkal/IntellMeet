@@ -155,7 +155,7 @@ export function RegisterForm({ onSwitch }: { onSwitch: (view: string) => void })
       <CardHeader className="space-y-1.5">
         <h1 className="text-2xl font-semibold tracking-tight text-balance">Register</h1>
         <CardDescription>
-          Create your IntellMeet account. Passwords need at least 15 characters.
+          Create your IntellMeet account. Passwords need at least 8 characters.
         </CardDescription>
       </CardHeader>
 
@@ -186,7 +186,7 @@ export function RegisterForm({ onSwitch }: { onSwitch: (view: string) => void })
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="register-password">Password (15+ characters)</Label>
+            <Label htmlFor="register-password">Password (8+ characters)</Label>
             <Input
               id="register-password"
               type="password"
@@ -194,7 +194,7 @@ export function RegisterForm({ onSwitch }: { onSwitch: (view: string) => void })
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              minLength={15}
+              minLength={8}
             />
           </div>
 
