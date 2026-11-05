@@ -17,7 +17,8 @@ function normalizeApiBase(raw: string | undefined): string {
   if (trimmed.length === 0) {
     return DEFAULT_API_BASE;
   }
-  return trimmed.endsWith("/") ? trimmed.slice(0, -1) : trimmed;
+  const clean = trimmed.endsWith("/") ? trimmed.slice(0, -1) : trimmed;
+  return clean.endsWith(API_SUFFIX) ? clean : `${clean}${API_SUFFIX}`;
 }
 
 /** API base including the "/api" suffix, e.g. "/api" or "http://host:3000/api". */

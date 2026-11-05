@@ -21,7 +21,13 @@ const { clientUrl, nodeEnv } = getEnv();
 // must match CLIENT_URL; anything else fails closed with a safe 403
 // envelope instead of silently echoing access headers.
 function corsOrigin(origin, callback) {
-  if (!origin || (clientUrl && origin === clientUrl)) {
+  if (!origin) {
+    callback(null, true);
+    return;
+  }
+  const cleanOrigin = origin.replace(/\/+$/, "");
+  const cleanClient = clientUrl ? clientUrl.replace(/\/+$/, "") : undefined;
+  if (cleanClient && cleanOrigin === cleanClient) {
     callback(null, true);
     return;
   }
@@ -62,6 +68,13 @@ app.use((req, _res, next) => {
 });
 app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ limit: "100kb", extended: false }));
+
+app.get(
+  "/",
+  asyncHandler(async (_req, res) => {
+    res.status(200).json({ status: "ok", name: "IntellMeet API" });
+  })
+);
 
 app.get(
   "/api/health",
