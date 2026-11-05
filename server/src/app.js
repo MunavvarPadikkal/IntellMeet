@@ -2,6 +2,7 @@ const cors = require("cors");
 const express = require("express");
 
 const { getEnv } = require("./config/env");
+const { isAllowedOrigin } = require("./utils/corsHelper");
 const AppError = require("./utils/AppError");
 const asyncHandler = require("./utils/asyncHandler");
 const errorHandler = require("./middleware/errorHandler");
@@ -21,13 +22,7 @@ const { clientUrl, nodeEnv } = getEnv();
 // must match CLIENT_URL; anything else fails closed with a safe 403
 // envelope instead of silently echoing access headers.
 function corsOrigin(origin, callback) {
-  if (!origin) {
-    callback(null, true);
-    return;
-  }
-  const cleanOrigin = origin.replace(/\/+$/, "");
-  const cleanClient = clientUrl ? clientUrl.replace(/\/+$/, "") : undefined;
-  if (cleanClient && cleanOrigin === cleanClient) {
+  if (isAllowedOrigin(origin, clientUrl)) {
     callback(null, true);
     return;
   }

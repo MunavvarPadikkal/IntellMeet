@@ -13,6 +13,7 @@ const { takeSendBudget } = require("./sendBudget");
 const { setRealtimePublisher, setRoomCloser } = require("./realtime");
 const chatMetrics = require("../utils/chatMetrics");
 const { resolveChatLimits } = require("../constants/chatLimits");
+const { isAllowedOrigin } = require("../utils/corsHelper");
 
 // Single Socket.IO server attached to the existing HTTP bootstrap (no
 // extra listener). App events and chat only — media stays on LiveKit and
@@ -138,7 +139,16 @@ function attachMeetingSockets(httpServer) {
     // origin plus credentials so browsers (withCredentials) send the
     // HttpOnly auth cookie on the handshake.
     cors: env.clientUrl
-      ? { origin: env.clientUrl, credentials: true }
+      ? {
+          origin: (origin, callback) => {
+            if (isAllowedOrigin(origin, env.clientUrl)) {
+              callback(null, true);
+            } else {
+              callback(new Error("Origin not allowed"));
+            }
+          },
+          credentials: true,
+        }
       : undefined,
     maxHttpBufferSize: packetMax,
   });
