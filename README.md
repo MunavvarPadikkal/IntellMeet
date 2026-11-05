@@ -40,17 +40,39 @@ Features will be implemented and documented as development progresses.
 
 ```text
 intellmeet/
-├── client/                 # React frontend
-├── server/                 # Express backend
-│   └── src/
-│       ├── config/
-│       ├── middleware/
-│       ├── modules/
-│       └── sockets/
-├── docs/                   # Architecture and documentation
+├── client/                         # React + Vite frontend
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── hooks/
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── .env.example
+│   ├── package.json
+│   └── vite.config.ts
+├── server/                         # Node.js + Express backend
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── db.js
+│   │   ├── routes/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── middleware/
+│   │   ├── services/
+│   │   ├── sockets/
+│   │   ├── utils/
+│   │   ├── app.js
+│   │   └── server.js
+│   ├── .env.example
+│   └── package.json
+├── docs/
+│   └── api-contracts.md
 ├── .github/
-│   └── workflows/          # CI/CD workflows
-├── .env.example
+│   └── workflows/
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -102,7 +124,7 @@ Create a local `.env` file inside `server/` and configure the required environme
 Example:
 
 ```env
-PORT=5000
+PORT=3000
 CLIENT_URL=http://localhost:5173
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=replace_with_a_secure_random_secret
@@ -119,7 +141,7 @@ npm run dev
 
 If the backend health endpoint has been implemented, verify it at:
 
-`http://localhost:5000/api/health`
+`http://localhost:3000/api/health`
 
 ### Environment Configuration
 
